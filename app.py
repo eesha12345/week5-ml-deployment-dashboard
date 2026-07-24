@@ -98,8 +98,8 @@ elif page == "CSV Upload":
     st.title("CSV Batch Prediction")
 
     uploaded_file = st.file_uploader(
-        "Upload CSV File",
-        type=["csv"]
+        "Upload zip File",
+        type=["zip"]
     )
 
     if uploaded_file is not None:
