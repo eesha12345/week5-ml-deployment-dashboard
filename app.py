@@ -94,7 +94,7 @@ elif page == "Manual Prediction":
 
         # ---------------- CSV UPLOAD ----------------
 
-elif page == "CSV Upload":
+   elif page == "CSV Upload":
 
     st.title("CSV Batch Prediction")
 
