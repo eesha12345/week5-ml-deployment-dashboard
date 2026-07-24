@@ -8,7 +8,7 @@ model = joblib.load("best_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
 # Load dataset
-df = pd.read_csv("dataset.zip",compression="zip")
+df = pd.read_csv("dataset.zip",compression="zip",nrows=10000)
 
 # Page Settings
 st.set_page_config(
