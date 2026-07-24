@@ -7,8 +7,12 @@ import numpy as np
 model = joblib.load("best_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
-# Load dataset
-df = pd.read_csv("dataset.zip",compression="zip",nrows=10000)
+# 1. This creates the upload box on the screen for zip files
+uploaded_file = st.file_uploader("Upload CSV File", type="zip")
+
+# 2. This reads the file that the user just dropped into the box
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file, compression="zip", nrows=10000)
 
 # Page Settings
 st.set_page_config(
