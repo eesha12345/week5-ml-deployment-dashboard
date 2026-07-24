@@ -102,19 +102,21 @@ elif page == "CSV Upload":
         type=["zip"]
     )
 
+    import zipfile
+    
+    # Check if a file was uploaded; if not, use the repository fallback
     if uploaded_file is not None:
-
-        import zipfile
         data = pd.read_csv(zipfile.ZipFile(uploaded_file).open("dataset.csv"))
+    else:
+        data = pd.read_csv(zipfile.ZipFile("dataset.zip").open("dataset.csv"))
+        st.info("ℹ️ Automatically running batch prediction using default dataset.zip")
 
-        st.write("Uploaded Data")
+    st.write("### Uploaded Data")
+    st.write(data.head())
+    
+    # Process and drop columns safely
+    input_data = data.drop(columns=["student_id", "grade"], errors="ignore")
 
-        st.write(data.head())
-
-        input_data = data.drop(columns=["student_id"], errors="ignore")
-
-        if "grade" in input_data.columns:
-            input_data = input_data.drop(columns=["grade"])
 
         input_scaled = scaler.transform(input_data)
 
