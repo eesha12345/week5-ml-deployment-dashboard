@@ -13,13 +13,6 @@ st.set_page_config(
 # 2. Load model and scaler
 model = joblib.load("best_model.pkl")
 scaler = joblib.load("scaler.pkl")
-
-# 3. Create the upload box
-uploaded_file = st.file_uploader("Upload CSV File", type="zip")
-
-# 4. Check if file is uploaded before doing anything else
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file, compression="zip", nrows=10000)
     
     # IMPORTANT: All your prediction code, st.write(df), or 
     # model processing should be indented right here inside this IF block!
