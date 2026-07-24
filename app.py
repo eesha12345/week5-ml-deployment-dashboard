@@ -102,7 +102,7 @@ elif page == "CSV Upload":
         type=["zip"]
     )
 
-     import zipfile
+        import zipfile
         
         if uploaded_file is not None:
             data = pd.read_csv(zipfile.ZipFile(uploaded_file).open("dataset.csv"))
