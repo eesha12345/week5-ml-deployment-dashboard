@@ -4,8 +4,8 @@ import joblib
 import numpy as np
 
 # Load model and scaler
-model = joblib.load("models/best_model.pkl")
-scaler = joblib.load("models/scaler.pkl")
+model = joblib.load("best_model.pkl")
+scaler = joblib.load("scaler.pkl")
 
 # Load dataset
 df = pd.read_csv("dataset.csv")
