@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 import numpy as np
+import zipfile
 
 # Load model and scaler
 model = joblib.load("best_model.pkl")
@@ -102,8 +103,7 @@ elif page == "CSV Upload":
         type=["zip"]
     )
 
-        import zipfile
-        
+
         if uploaded_file is not None:
             data = pd.read_csv(zipfile.ZipFile(uploaded_file).open("dataset.csv"))
         else:
