@@ -79,17 +79,17 @@ elif page == "Manual Prediction":
         if total_score < 0 or total_score > 100:
             st.error("⚠️ Please enter a valid Total Score between 0 and 100.")
         else:
-            data = np.array([[study_hours, attendance, assignments, total_score]])
-            data = scaler.transform(data)
-            prediction = model.predict(data)
+                data = np.array([[study_hours, attendance, assignments, total_score]])
+                data = scaler.transform(data)
+                prediction = model.predict(data)
             
             # Check if total score is between 0 and 25 to show Fail
-            if 0 <= total_score <= 25:
+                if 0 <= total_score <= 25:
                 final_grade = "Fail"
-            else:
+                else:
                 final_grade = prediction
                 
-            st.success(f"Predicted Grade: {final_grade}")
+                st.success(f"Predicted Grade: {final_grade}")
 
         # ---------------- CSV UPLOAD ----------------
 
