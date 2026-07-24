@@ -102,36 +102,35 @@ elif page == "CSV Upload":
         type=["zip"]
     )
 
-    import zipfile
-    
-    # Check if a file was uploaded; if not, use the repository fallback
-    if uploaded_file is not None:
-        data = pd.read_csv(zipfile.ZipFile(uploaded_file).open("dataset.csv"))
-    else:
-        data = pd.read_csv(zipfile.ZipFile("dataset.zip").open("dataset.csv"))
-        st.info("ℹ️ Automatically running batch prediction using default dataset.zip")
+     import zipfile
+        
+        if uploaded_file is not None:
+            data = pd.read_csv(zipfile.ZipFile(uploaded_file).open("dataset.csv"))
+        else:
+            data = pd.read_csv(zipfile.ZipFile("dataset.zip").open("dataset.csv"))
+            st.info("ℹ️ Automatically running batch prediction using default dataset.zip")
 
-    st.write("### Uploaded Data")
-    st.write(data.head())
-    
-    # Process and drop columns safely
-    input_data = data.drop(columns=["student_id", "grade"], errors="ignore")
-    input_scaled = scaler.transform(input_data)
-    predictions = model.predict(input_scaled)
+        st.write("### Uploaded Data")
+        st.write(data.head())
+        
+        # Process and drop columns safely
+        input_data = data.drop(columns=["student_id", "grade"], errors="ignore")
+        input_scaled = scaler.transform(input_data)
+        predictions = model.predict(input_scaled)
+        
+        data["Predicted Grade"] = predictions
+        st.write("### Prediction Results")
+        st.write(data)
+        
+        # Create a download button for the predictions
+        csv = data.to_csv(index=False).encode("utf-8")
+        st.download_button(
+            label="Download Prediction Results",
+            data=csv,
+            file_name="prediction_results.csv",
+            mime="text/csv"
+        )
 
-    data["Predicted Grade"] = predictions
-
-    st.write("Prediction Results")
-
-    st.write(data)
-
-    csv = data.to_csv(index=False).encode("utf-8")
-
-    st.download_button(
-         label="Download Prediction Results",
-         data=csv,
-         file_name="prediction_results.csv",
-         mime="text/csv"
         )# ---------------- MODEL PERFORMANCE ----------------
 
 elif page == "Model Performance":
