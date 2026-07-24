@@ -104,7 +104,7 @@ elif page == "CSV Upload":
 
     if uploaded_file is not None:
 
-        import ZipFile
+        import zipfile
         data = pd.read_csv(zipfile.Zipfile(uploaded_file).open("dataset.csv"))
 
         st.write("Uploaded Data")
