@@ -12,7 +12,7 @@ st.set_page_config(
 
 # 2. Load model and scaler
 model = joblib.load("best_model.pkl")
-scaler = joblib.load("scaler.pk1")
+scaler = joblib.load("scaler.pkl")
 
 # 3. Create the upload box
 uploaded_file = st.file_uploader("Upload CSV File", type="zip")
