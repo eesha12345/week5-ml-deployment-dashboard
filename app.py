@@ -3,23 +3,26 @@ import pandas as pd
 import joblib
 import numpy as np
 
-# Load model and scaler
-model = joblib.load("best_model.pkl")
-scaler = joblib.load("scaler.pkl")
-
-# 1. This creates the upload box on the screen for zip files
-uploaded_file = st.file_uploader("Upload CSV File", type="zip")
-
-# 2. This reads the file that the user just dropped into the box
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file, compression="zip", nrows=10000)
-
-# Page Settings
+# 1. ALWAYS FIRST: Page Settings must be at the very top
 st.set_page_config(
     page_title="Student Performance Prediction",
     page_icon="🎓",
     layout="wide"
 )
+
+# 2. Load model and scaler
+model = joblib.load("best_model.pkl")
+scaler = joblib.load("scaler.pk1")
+
+# 3. Create the upload box
+uploaded_file = st.file_uploader("Upload CSV File", type="zip")
+
+# 4. Check if file is uploaded before doing anything else
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file, compression="zip", nrows=10000)
+    
+    # IMPORTANT: All your prediction code, st.write(df), or 
+    # model processing should be indented right here inside this IF block!
 
 # Sidebar
 st.sidebar.title("Navigation")
