@@ -94,14 +94,14 @@ elif page == "Manual Prediction":
 
         # ---------------- CSV UPLOAD ----------------
 
-   elif page == "CSV Upload":
+elif page == "CSV Upload":
 
-    st.title("CSV Batch Prediction")
+        st.title("CSV Batch Prediction")
 
-    uploaded_file = st.file_uploader(
-        "Upload zip File",
-        type=["zip"]
-    )
+        uploaded_file = st.file_uploader(
+             "Upload zip File",
+             type=["zip"]
+       )
 
 
         if uploaded_file is not None:
