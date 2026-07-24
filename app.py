@@ -116,25 +116,22 @@ elif page == "CSV Upload":
     
     # Process and drop columns safely
     input_data = data.drop(columns=["student_id", "grade"], errors="ignore")
+    input_scaled = scaler.transform(input_data)
+    predictions = model.predict(input_scaled)
 
+    data["Predicted Grade"] = predictions
 
-        input_scaled = scaler.transform(input_data)
+    st.write("Prediction Results")
 
-        predictions = model.predict(input_scaled)
+    st.write(data)
 
-        data["Predicted Grade"] = predictions
+    csv = data.to_csv(index=False).encode("utf-8")
 
-        st.write("Prediction Results")
-
-        st.write(data)
-
-        csv = data.to_csv(index=False).encode("utf-8")
-
-        st.download_button(
-            label="Download Prediction Results",
-            data=csv,
-            file_name="prediction_results.csv",
-            mime="text/csv"
+    st.download_button(
+         label="Download Prediction Results",
+         data=csv,
+         file_name="prediction_results.csv",
+         mime="text/csv"
         )# ---------------- MODEL PERFORMANCE ----------------
 
 elif page == "Model Performance":
