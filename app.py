@@ -85,9 +85,9 @@ elif page == "Manual Prediction":
             
             # Check if total score is between 0 and 25 to show Fail
                 if 0 <= total_score <= 25:
-                final_grade = "Fail"
+                    final_grade = "Fail"
                 else:
-                final_grade = prediction
+                    final_grade = prediction
                 
                 st.success(f"Predicted Grade: {final_grade}")
 
